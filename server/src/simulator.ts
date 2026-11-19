@@ -1,8 +1,9 @@
 import { IncidentType } from "campus-shield-shared";
 import type { Incident } from "campus-shield-shared";
 import type { Service } from "./services/service.js";
-import { readFileSync } from "fs";
-import { join } from "path";
+import { readFileSync, existsSync } from "fs";
+import { join, resolve, dirname } from "path";
+import { fileURLToPath } from "url";
 
 /** Mulberry32 seeded PRNG returning [0,1). */
 function mulberry32(seed: number): () => number {
@@ -17,6 +18,17 @@ function mulberry32(seed: number): () => number {
 
 interface BuildingRecord { id: string; name: string; lat: number; lng: number; }
 
+/** Resolve campus.json path safely across roots. */
+function getCampusPath(): string {
+  const dir = dirname(fileURLToPath(import.meta.url));
+  const candidates = [
+    resolve(dir, "../data/campus.json"),
+    join(process.cwd(), "data/campus.json"),
+    join(process.cwd(), "server/data/campus.json"),
+  ];
+  return candidates.find(c => existsSync(c)) ?? candidates[0];
+}
+
 /** Repeatable demo incident generator. */
 export class Simulator {
   private readonly rand: () => number;
@@ -25,9 +37,9 @@ export class Simulator {
 
   constructor(private readonly service: Service, seed = 42) {
     this.rand = mulberry32(seed);
-    const campus = JSON.parse(
-      readFileSync(join(process.cwd(), "data", "campus.json"), "utf-8")
-    ) as { buildings: BuildingRecord[] };
+    const campus = JSON.parse(readFileSync(getCampusPath(), "utf-8")) as {
+      buildings: BuildingRecord[];
+    };
     this.buildings = campus.buildings;
   }
 
@@ -52,12 +64,11 @@ export class Simulator {
   advanceAll(): void {
     const incidents = this.service.getIncidents();
     for (const inc of incidents) {
-      if (inc.status === "RESOLVED") continue;
-      if (!inc.assignedResponderId) continue;
+      if (inc.status === "RESOLVED" || !inc.assignedResponderId) continue;
       try {
         this.service.advanceIncident(inc.id, inc.assignedResponderId);
       } catch {
-        // skip incidents that can't advance
+        // skip incidents that cannot advance
       }
     }
   }
