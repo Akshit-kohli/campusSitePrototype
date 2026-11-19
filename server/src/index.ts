@@ -1,16 +1,24 @@
 import express from "express";
 import { createApp } from "./app.js";
 import { startEscalationLoop } from "./escalation/escalationLoop.js";
-import { join } from "path";
+import { join, resolve, dirname } from "path";
 import { existsSync } from "fs";
+import { fileURLToPath } from "url";
 
 const PORT = parseInt(process.env.PORT ?? "3001", 10);
 
 const { app, httpServer, service } = createApp();
 const escalationTimer = startEscalationLoop(service);
 
-const clientDist = join(process.cwd(), "..", "client", "dist");
-if (existsSync(join(clientDist, "index.html"))) {
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const candidates = [
+  resolve(__dirname, "../../client/dist"),
+  resolve(process.cwd(), "client/dist"),
+  resolve(process.cwd(), "../client/dist"),
+];
+const clientDist = candidates.find(p => existsSync(join(p, "index.html")));
+
+if (clientDist) {
   app.use(express.static(clientDist));
   app.get("*", (_req, res) => res.sendFile(join(clientDist, "index.html")));
 }
