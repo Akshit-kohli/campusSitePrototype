@@ -1,0 +1,42 @@
+{
+  "MEDICAL": [
+    "Call 112 immediately if not already done.",
+    "Keep the person calm and still.",
+    "Do not move someone who may have a spinal injury.",
+    "If unconscious and breathing: place in recovery position.",
+    "If not breathing: begin CPR if trained.",
+    "Apply pressure to any visible bleeding wounds with a clean cloth.",
+    "Do not give food or water.",
+    "Stay with the person until help arrives."
+  ],
+  "FIRE": [
+    "Activate the nearest fire alarm pull station.",
+    "Call 101 (fire) or 112 immediately.",
+    "Evacuate via the nearest marked emergency exit — do NOT use lifts.",
+    "Close doors behind you to slow fire spread.",
+    "If smoke is present, stay low and cover your nose and mouth.",
+    "Do not re-enter the building for any reason.",
+    "Proceed to the designated assembly point and await headcount.",
+    "If trapped: seal door gaps with cloth, signal from a window."
+  ],
+  "THREAT": [
+    "Move to the nearest secure indoor location immediately.",
+    "Lock or barricade the door and turn off lights.",
+    "Silence your phone and stay away from windows.",
+    "Call 100 (police) or 112 when safe to do so.",
+    "Do not open the door until an all-clear is given by authorities.",
+    "If evacuation is ordered, leave belongings and move quickly.",
+    "Follow instructions from security personnel only.",
+    "Do not post real-time location on social media."
+  ],
+  "ACCIDENT": [
+    "Do not move the injured person unless there is immediate danger.",
+    "Call 112 for emergency services.",
+    "Keep bystanders back to give the injured person space.",
+    "If trained, assess airway, breathing, circulation.",
+    "Control bleeding with firm, continuous pressure.",
+    "Keep the person warm with a blanket if available.",
+    "Note the time of the accident for first responders.",
+    "Stay calm and reassure the injured person help is on the way."
+  ]
+}

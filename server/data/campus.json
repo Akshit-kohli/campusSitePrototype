@@ -1,0 +1,21 @@
+{
+  "buildings": [
+    { "id": "b1", "name": "Library Block", "lat": 28.4723, "lng": 77.4939 },
+    { "id": "b2", "name": "Main Academic Block", "lat": 28.4731, "lng": 77.4951 },
+    { "id": "b3", "name": "Engineering Lab", "lat": 28.4718, "lng": 77.4962 },
+    { "id": "b4", "name": "Student Hostel A", "lat": 28.4710, "lng": 77.4930 },
+    { "id": "b5", "name": "Student Hostel B", "lat": 28.4705, "lng": 77.4945 },
+    { "id": "b6", "name": "Cafeteria", "lat": 28.4727, "lng": 77.4925 },
+    { "id": "b7", "name": "Sports Complex", "lat": 28.4740, "lng": 77.4910 },
+    { "id": "b8", "name": "Administrative Block", "lat": 28.4735, "lng": 77.4968 },
+    { "id": "b9", "name": "Medical Centre", "lat": 28.4715, "lng": 77.4972 },
+    { "id": "b10", "name": "Research Block", "lat": 28.4745, "lng": 77.4955 }
+  ],
+  "safePoints": [
+    { "id": "sp1", "name": "Main Gate Assembly Point", "lat": 28.4700, "lng": 77.4920 },
+    { "id": "sp2", "name": "Ground Zero Assembly", "lat": 28.4750, "lng": 77.4935 },
+    { "id": "sp3", "name": "East Parking Assembly", "lat": 28.4728, "lng": 77.4980 },
+    { "id": "sp4", "name": "West Garden Assembly", "lat": 28.4720, "lng": 77.4905 },
+    { "id": "sp5", "name": "North Field Assembly", "lat": 28.4760, "lng": 77.4950 }
+  ]
+}

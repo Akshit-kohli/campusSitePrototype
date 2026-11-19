@@ -1,0 +1,12 @@
+- TypeScript strict, no `any`, no default exports except React pages. Named exports.
+- server/src/domain/ is pure: it never imports express, ws, better-sqlite3 or fs.
+- SQL only in server/src/db/repo.ts, prepared statements only.
+- Validate every request body and query with zod at the route boundary.
+- Time comes from an injected Clock. Never call Date.now() inside domain/.
+- Status changes only via domain workflow transition, which also appends an incident event.
+- Shared types live in shared/ and are imported by both sides. No duplicated type definitions.
+- Functions <= 30 lines, one job. Good names over comments; JSDoc on exported functions.
+- Client: function components and hooks only; no business logic in components, call api.ts.
+- Every domain module and route has vitest tests. Run `npm run typecheck && npm test` before saying done.
+- Allowed deps are those listed in the Setup. Ask before adding more (you cannot ask, so don't add any).
+- Be terse in output. No explanations unless asked.
